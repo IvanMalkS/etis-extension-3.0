@@ -54,7 +54,8 @@ function addCustomElements(sidebar: HTMLElement): void {
 
     const links = lastNav.querySelectorAll<HTMLAnchorElement>('li > a');
     links.forEach((link) => {
-        if (link.parentElement === themeSwitcherLi) return;
+        const parentLi = link.parentElement;
+        if (!(parentLi instanceof HTMLLIElement) || link.parentElement === themeSwitcherLi) return;
 
         const navIcon = document.createElement('span');
         navIcon.className = 'material-icons';

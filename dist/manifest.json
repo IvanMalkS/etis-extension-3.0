@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "ЕТИС 2.1",
+  "version": "2.1.0",
+  "description": "Форк и развитие расширения 'ЕТИС 2.0' с новым функционалом.",
+  "author": "Оригинал: Алексей Еременко и команда etis-20. Форк 'ЕТИС 2.1': Иван Малков, Сергей @Th3ro",
+  "icons": {
+    "128": "logo.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://student.psu.ru/*"],
+      "js": ["content-script.js"],
+      "css": ["assets/style.css"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*", "logo.png", "icon.svg"],
+      "matches": ["https://student.psu.ru/*"]
+    }
+  ]
+}

@@ -1812,3 +1812,142 @@ form > .items > .item {
     z-index: 11;
     display: block;
 }
+
+/* Сначала скрываем десктопный сайдбар и сдвигаем контент на мобилках */
+@media (max-width: 768px) {
+    /* Скрываем оригинальный десктопный сайдбар */
+    .span3 {
+        display: none !important;
+    }
+
+    /* Убираем отступ у основного контента, чтобы он занимал всю ширину */
+    .span9 {
+        margin-left: 0 !important;
+        padding: 1rem !important; /* Уменьшаем отступы для мобильного вида */
+    }
+
+    /* Добавляем отступ снизу у body, чтобы контент не перекрывался навбаром */
+    body {
+        padding-bottom: 70px !important; /* Высота навбара + небольшой запас */
+    }
+
+    .weeks {
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    .span9 .timetable-buttonbar {
+        display: none !important;
+    }
+}
+
+.mobile-nav {
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--color-card);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.mobile-nav-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 10px;
+    gap: 4px;
+    padding: 8px 12px;
+    border-radius: var(--radius-medium);
+    transition: background-color 0.2s;
+}
+
+.mobile-nav-button:hover {
+    background-color: var(--color-highlight);
+}
+
+.mobile-nav-button.active {
+    color: var(--color-accent);
+}
+
+.mobile-nav-button .material-icons {
+    font-size: 24px;
+}
+
+.bottom-sheet-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.3s,
+        visibility 0.3s;
+}
+
+.bottom-sheet-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.bottom-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-card);
+    border-top-left-radius: var(--radius-large);
+    border-top-right-radius: var(--radius-large);
+    z-index: 1002;
+    padding: 16px;
+    padding-bottom: 32px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.bottom-sheet.visible {
+    transform: translateY(0);
+}
+
+.bottom-sheet-handle {
+    width: 40px;
+    height: 4px;
+    background-color: var(--color-scrollbar-thumb);
+    border-radius: 2px;
+    margin: 0 auto 16px;
+}
+
+.bottom-sheet-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bottom-sheet-links a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    border-radius: var(--radius-medium);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.bottom-sheet-links a:hover {
+    background-color: var(--color-highlight);
+}
