@@ -1813,24 +1813,20 @@ form > .items > .item {
     display: block;
 }
 
-/* Сначала скрываем десктопный сайдбар и сдвигаем контент на мобилках */
 @media (max-width: 768px) {
-    /* Скрываем оригинальный десктопный сайдбар */
+    .mobile-nav-container {
+        display: block;
+    }
+
     .span3 {
         display: none !important;
     }
 
-    /* Убираем отступ у основного контента, чтобы он занимал всю ширину */
     .span9 {
         margin-left: 0 !important;
-        padding: 1rem !important; /* Уменьшаем отступы для мобильного вида */
+        padding: 1rem !important;
+        padding-bottom: 80px !important;
     }
-
-    /* Добавляем отступ снизу у body, чтобы контент не перекрывался навбаром */
-    body {
-        padding-bottom: 70px !important; /* Высота навбара + небольшой запас */
-    }
-
     .weeks {
         width: 100%;
         padding-top: 20px;
@@ -1839,21 +1835,31 @@ form > .items > .item {
     .span9 .timetable-buttonbar {
         display: none !important;
     }
+
+    body {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
 }
 
 .mobile-nav {
-    width: 100vw;
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    width: calc(100vw - 16px - 16px);
     height: 60px;
     background: var(--color-card);
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: var(--radius-large);
+
     display: flex;
     justify-content: space-around;
     align-items: center;
     z-index: 1000;
+
+    padding: 0 8px;
 }
 
 .mobile-nav-button {
@@ -1865,9 +1871,19 @@ form > .items > .item {
     text-decoration: none;
     font-size: 10px;
     gap: 4px;
-    padding: 8px 12px;
+    padding: 4px;
     border-radius: var(--radius-medium);
     transition: background-color 0.2s;
+    flex: 1;
+    height: 100%;
+}
+
+.mobile-nav-button span:not(.material-icons) {
+    display: none;
+}
+
+.mobile-nav-button.more-button span:not(.material-icons) {
+    display: block;
 }
 
 .mobile-nav-button:hover {
@@ -1950,4 +1966,34 @@ form > .items > .item {
 
 .bottom-sheet-links a:hover {
     background-color: var(--color-highlight);
+}
+
+.table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15px, black 98%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15px, black 98%, transparent);
+}
+
+.table-scroll-wrapper .common {
+    margin-bottom: 0 !important;
+
+    min-width: 650px;
+}
+
+.table-scroll-wrapper .common td,
+.table-scroll-wrapper .common th {
+    overflow-wrap: normal;
+    word-wrap: normal;
+}
+
+.table-scroll-wrapper::-webkit-scrollbar {
+    height: 6px;
+    background-color: transparent;
+}
+.table-scroll-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--color-scrollbar-thumb);
+    border-radius: 3px;
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'preact/hooks';
+import ThemeSwitcherButton from './ThemeSwitcher';
 
 type NavLink = {
     href: string;
@@ -7,30 +8,6 @@ type NavLink = {
     rawHtml?: string;
     hasIndicator?: boolean;
 };
-
-/**
- * Ищет иконку для ссылки по ее href.
- * @param href - URL ссылки.
- * @returns Строку с названием иконки Material Icons или undefined.
- */
-function mapHrefToIcon(href: string): string | undefined {
-    const iconMap: Record<string, string> = {
-        'stu.change_pass_form': 'vpn_key',
-        'stu_email_pkg.change_email': 'alternate_email',
-        'stu.change_pr_page': 'account_box',
-        'stu.logout': 'exit_to_app',
-        'stu.teach_plan': 'school',
-        'stu.signs': 'assessment',
-        'stu.timetable': 'today',
-        'stu.announce': 'campaign',
-        'stu.teachers': 'people',
-        'stu.library': 'local_library',
-        'stu.orders': 'description',
-        'cert_pkg.stu_certif': 'receipt_long',
-        'stu.sc_portfolio': 'folder_shared',
-    };
-    return iconMap[href.split('?')[0]];
-}
 
 /**
  * Парсит десктопный сайдбар и генерирует массив объектов NavLink.
@@ -59,7 +36,6 @@ function generateLinksFromSidebar(): NavLink[] {
         if (href) {
             links.push({
                 href,
-                icon: mapHrefToIcon(href),
                 text: anchor.innerText.trim(),
                 rawHtml: anchor.children.length > 0 ? anchor.innerHTML : undefined,
                 hasIndicator: !!anchor.querySelector('.badge-point'),
@@ -102,7 +78,6 @@ export default function MobileNavbar() {
                         className={`mobile-nav-button ${activePage.split('?')[0] === btn.href ? 'active' : ''}`}
                     >
                         <span className="material-icons">{btn.icon}</span>
-                        {btn.text}
                     </a>
                 ))}
                 <button
@@ -111,7 +86,6 @@ export default function MobileNavbar() {
                     aria-label="Открыть больше опций"
                 >
                     <span className="material-icons">menu</span>
-                    Еще
                 </button>
             </nav>
 
@@ -122,6 +96,7 @@ export default function MobileNavbar() {
             <div className={`bottom-sheet ${isSheetOpen ? 'visible' : ''}`}>
                 <div className="bottom-sheet-handle" />
                 <div className="bottom-sheet-links">
+                    <ThemeSwitcherButton />
                     {moreLinks.map((link) => (
                         <a key={link.href} href={link.href}>
                             {link.icon && <span className="material-icons">{link.icon}</span>}

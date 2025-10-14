@@ -5,9 +5,9 @@ import tsPlugin from '@typescript-eslint/eslint-plugin';
 import eslintPluginReact from 'eslint-plugin-react';
 import eslintPluginPreact from 'eslint-config-preact';
 import eslintConfigPrettier from 'eslint-config-prettier';
-import { render } from 'preact-render-to-string'; // Импортируем для определения версии
+import { render } from 'preact-render-to-string';
 
-const preactVersion = render.toString().match(/10\.\d+\.\d+/)?.[0] || '10.19'; // Автоопределение версии
+const preactVersion = render.toString().match(/10\.\d+\.\d+/)?.[0] || '10.19';
 
 export default [
     {
