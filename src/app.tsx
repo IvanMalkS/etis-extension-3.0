@@ -4,6 +4,7 @@ import { initializeTheme } from './modules/theme';
 import { modifySidebar } from './modules/sidebar';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import MobileNavbar from './modules/components/MobileNavbar';
+import { makeTablesScrollable } from './modules/tables';
 
 import * as Pages from './modules/pages';
 
@@ -35,6 +36,7 @@ export function App() {
 
         if (mainContent) {
             modifySidebar();
+            makeTablesScrollable();
 
             switch (page) {
                 case 'stu.timetable':

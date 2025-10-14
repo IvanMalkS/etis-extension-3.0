@@ -23,6 +23,6 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true
     },
-    "include": ["src"], // <- Vite обычно генерирует так, это правильно
+    "include": ["src"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }
