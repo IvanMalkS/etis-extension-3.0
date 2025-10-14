@@ -3,7 +3,7 @@
  * в контейнер с горизонтальной прокруткой для адаптивности.
  */
 export function makeTablesScrollable(): void {
-    const tables = document.querySelectorAll<HTMLTableElement>('table.common');
+  const tables = document.querySelectorAll<HTMLTableElement>('table.common, table.slimtab_nice');
 
     if (tables.length === 0) {
         return;

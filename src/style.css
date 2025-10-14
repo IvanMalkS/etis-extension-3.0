@@ -1840,6 +1840,7 @@ form > .items > .item {
         word-wrap: break-word;
         overflow-wrap: break-word;
     }
+
 }
 
 .mobile-nav {
@@ -1970,6 +1971,7 @@ form > .items > .item {
 
 .table-scroll-wrapper {
     width: 100%;
+    max-width: 90vw;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 
@@ -1977,11 +1979,13 @@ form > .items > .item {
     mask-image: linear-gradient(to right, transparent, black 15px, black 98%, transparent);
 }
 
-.table-scroll-wrapper .common {
+.table-scroll-wrapper > .common,
+.table-scroll-wrapper > .slimtab_nice {
+    width: auto !important;
+    min-width: 650px !important;
     margin-bottom: 0 !important;
-
-    min-width: 650px;
 }
+
 
 .table-scroll-wrapper .common td,
 .table-scroll-wrapper .common th {
