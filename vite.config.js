@@ -3,7 +3,6 @@ import preact from '@preact/preset-vite';
 import { resolve } from 'path';
 import zipPack from 'vite-plugin-zip-pack';
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), '');
     
@@ -25,7 +24,7 @@ export default defineConfig(({ mode }) => {
                 output: {
                     entryFileNames: '[name].js',
                     chunkFileNames: 'assets/[name].js',
-                    assetFileNames: 'assets/[name].[ext]',
+                    assetFileNames: 'assets/style.css',
                 },
             },
         },
