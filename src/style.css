@@ -1997,3 +1997,52 @@ form > .items > .item {
     background-color: var(--color-scrollbar-thumb);
     border-radius: 3px;
 }
+
+
+.offline-notification,
+.offline-error {
+    padding: 12px 16px;
+    margin-bottom: 2rem;
+    border-radius: var(--radius-medium);
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.offline-notification {
+    background-color: var(--color-accent);
+    color: var(--color-text-primary-invert);
+    box-shadow: var(--shadow-main);
+}
+
+.offline-error {
+    background-color: var(--color-highlight);
+    color: var(--color-text-secondary);
+}
+
+/* Добавляем стили к нашей сгенерированной офлайн-таблице,
+   чтобы она была похожа на онлайн-версию */
+.offline-timetable .day {
+    border-radius: var(--radius-medium);
+    background-color: var(--color-card);
+    box-shadow: var(--shadow-main);
+    overflow: hidden;
+    padding: 0.6rem 0;
+    margin-bottom: 2rem;
+}
+
+.offline-timetable .day h3 {
+    padding: 1rem 1.6rem 1.4rem;
+    margin: 0;
+    font-size: 14px;
+}
+
+.offline-timetable table {
+    width: 100%;
+    border-collapse: collapse; /* Убираем двойные рамки */
+}
+
+.offline-timetable td {
+    padding: 0.8rem 1.4rem;
+    vertical-align: middle;
+    border-top: 1px solid var(--color-highlight);
+}

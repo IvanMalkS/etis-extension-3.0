@@ -19,10 +19,11 @@ export default defineConfig(({ mode }) => {
             emptyOutDir: true,
             rollupOptions: {
                 input: {
+                    'service-worker': resolve(__dirname, 'src/service-worker.ts'),
                     'content-script': resolve(__dirname, 'src/content-script.tsx'),
                 },
                 output: {
-                    entryFileNames: '[name].js',
+                               entryFileNames: '[name].js',
                     chunkFileNames: 'assets/[name].js',
                     assetFileNames: 'assets/style.css',
                 },

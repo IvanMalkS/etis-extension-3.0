@@ -7,6 +7,15 @@
   "icons": {
     "128": "logo.png"
   },
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+    "permissions": [
+    "storage",
+    "scripting",
+    "activeTab"
+  ],
   "content_scripts": [
     {
       "matches": ["https://student.psu.ru/*"],
@@ -16,7 +25,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["assets/*", "logo.png", "icon.svg"],
+      "resources": ["assets/*", "logo.png", "icon.svg", "offline.html"],
       "matches": ["https://student.psu.ru/*"]
     }
   ]

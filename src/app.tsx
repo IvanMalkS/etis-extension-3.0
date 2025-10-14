@@ -40,7 +40,7 @@ export function App() {
 
             switch (page) {
                 case 'stu.timetable':
-                    Pages.modifyTimetablePage();
+                    Pages.handleTimetablePage();
                     break;
                 case 'stu.teachers':
                     Pages.modifyTeachersPage();
