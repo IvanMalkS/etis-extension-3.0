@@ -9,3 +9,7 @@ to start
 ```bash
     yarn build
 ```
+
+```bash
+    yarn build:watch
+```
