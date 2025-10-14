@@ -14,6 +14,10 @@ export function makeTablesScrollable(): void {
             return;
         }
 
+        if (table.style.width === '100%') {
+            table.style.width = '';
+        }
+
         const wrapper = document.createElement('div');
         wrapper.className = 'table-scroll-wrapper';
 
