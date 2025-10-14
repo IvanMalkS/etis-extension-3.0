@@ -1,4 +1,4 @@
-# ETIS-2.1
+# ETIS-3.0
 
 A fork and evolution of the 'ETIS 2.0' extension with new features and a modern tech stack.
 
@@ -73,3 +73,8 @@ git push origin v1.3.0-beta.0
 ```
 
 After pushing the tag, go to the "Releases" section of the GitHub repository to check the status of the automated release. The beta release will be marked as "Pre-release".
+
+## ETIS-2.0
+
+https://github.com/ENAleksey/etis-extension
+
