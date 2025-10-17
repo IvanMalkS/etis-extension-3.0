@@ -3,7 +3,7 @@
  * в контейнер с горизонтальной прокруткой для адаптивности.
  */
 export function makeTablesScrollable(): void {
-    const tables = document.querySelectorAll<HTMLTableElement>('table.common');
+  const tables = document.querySelectorAll<HTMLTableElement>('table.common, table.slimtab_nice');
 
     if (tables.length === 0) {
         return;
@@ -12,6 +12,10 @@ export function makeTablesScrollable(): void {
     tables.forEach((table) => {
         if (table.parentElement?.classList.contains('table-scroll-wrapper')) {
             return;
+        }
+
+        if (table.style.width === '100%') {
+            table.style.width = '';
         }
 
         const wrapper = document.createElement('div');
