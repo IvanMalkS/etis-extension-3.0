@@ -28,4 +28,3 @@ export function makeTablesScrollable(): void {
         wrapper.appendChild(table);
     });
 }
-

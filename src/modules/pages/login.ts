@@ -75,6 +75,3 @@ export function modifyLoginPage(): void {
         }
     }
 }
-
-
-

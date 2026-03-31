@@ -11,4 +11,3 @@ root.id = 'etis-3-0-root';
 document.body.appendChild(root);
 
 render(<App />, root);
-

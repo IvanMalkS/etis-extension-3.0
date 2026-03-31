@@ -12,9 +12,15 @@ export default defineConfig(({ mode }) => {
             preact(),
             zipPack({
                 outDir: 'dist-zip',
-                outFileName: `${env.npm_package_name}-${env.npm_package_version}.zip`,
+                outFileName: `${env.npm_package_name || 'etis-extension'}-${env.npm_package_version || '3.0.0'}.zip`,
             }),
         ],
+        resolve: {
+            alias: {
+                'react': 'preact/compat',
+                'react-dom': 'preact/compat',
+            },
+        },
         build: {
             outDir: resolve(__dirname, 'dist'),
             emptyOutDir: true,
@@ -22,6 +28,8 @@ export default defineConfig(({ mode }) => {
                 input: {
                     'content-script': resolve(__dirname, 'src/content-script.tsx'),
                     'theme-loader': resolve(__dirname, 'src/theme-loader.ts'),
+                    'popup': resolve(__dirname, 'src/popup.ts'),
+                    'offline-viewer': resolve(__dirname, 'src/offline-viewer.ts'),
                 },
                 output: {
                     entryFileNames: '[name].js',

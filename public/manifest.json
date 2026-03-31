@@ -10,22 +10,27 @@
   "content_scripts": [
     {
       "matches": ["https://student.psu.ru/*"],
-      "js": ["theme-loader.js"],
+      "js": ["theme-loader-loader.js"],
       "css": ["assets/style.css"],
       "run_at": "document_start"
     },
     {
       "matches": ["https://student.psu.ru/*"],
-      "js": ["content-script.js"],
+      "js": ["main-loader.js"],
       "run_at": "document_idle"
     }
   ],
   "web_accessible_resources": [
     {
-      "resources": ["assets/*", "logo.png", "icon.svg"],
+      "resources": ["assets/*", "logo.png", "icon.svg", "content-script.js", "theme-loader.js"],
       "matches": ["https://student.psu.ru/*"]
     }
   ],
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Расписание ЕТИС"
+  },
   "browser_specific_settings": {
     "gecko": {
       "id": "malkovsin@gmail.com"

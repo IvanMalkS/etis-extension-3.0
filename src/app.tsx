@@ -3,6 +3,7 @@ import { initializeTheme } from './modules/theme';
 import { modifySidebar } from './modules/sidebar';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import MobileNavbar from './modules/components/MobileNavbar';
+import Onboarding from './modules/components/Onboarding';
 import { makeTablesScrollable } from './modules/tables';
 import { SELECTORS, PAGES } from './modules/constants';
 
@@ -21,7 +22,6 @@ const PAGE_HANDLERS: Record<string, () => void> = {
     [PAGES.certificates]: Pages.modifyCertificatesPage,
     [PAGES.signs]: Pages.modifySignsPage,
 };
-
 
 function ensureViewportMetaTag(): void {
     if (document.querySelector(SELECTORS.common.viewportMeta)) {
@@ -62,9 +62,12 @@ export function App() {
         }
     }, []);
 
-    return isMobile ? <MobileNavbar /> : null;
+    return (
+        <>
+            {isMobile && <MobileNavbar />}
+            <Onboarding />
+        </>
+    );
 }
 
 export default App;
-
-
