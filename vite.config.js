@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => {
             rollupOptions: {
                 input: {
                     'content-script': resolve(__dirname, 'src/content-script.tsx'),
+                    'theme-loader': resolve(__dirname, 'src/theme-loader.ts'),
                 },
                 output: {
                     entryFileNames: '[name].js',
