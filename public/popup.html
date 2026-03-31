@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETIS 3.0</title>
+    <style>
+        body {
+            width: 300px;
+            padding: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color, #ffffff);
+            color: var(--text-color, #333333);
+            margin: 0;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                --bg-color: #1e1e1e;
+                --text-color: #e0e0e0;
+            }
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            gap: 12px;
+        }
+        .header img {
+            width: 32px;
+            height: 32px;
+        }
+        .header h1 {
+            font-size: 18px;
+            margin: 0;
+            color: #007bff;
+        }
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: opacity 0.2s;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .footer {
+            margin-top: 16px;
+            font-size: 12px;
+            text-align: center;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="logo.png" alt="Logo">
+        <h1>ETIS 3.0</h1>
+    </div>
+    <div class="actions">
+        <button id="view-offline" class="btn">Просмотр офлайн расписания</button>
+        <a href="https://student.psu.ru" target="_blank" class="btn btn-secondary">Открыть ЕТИС</a>
+    </div>
+    <div class="footer">
+        Версия 3.0.0
+    </div>
+    <script src="popup.js" type="module"></script>
+</body>
+</html>

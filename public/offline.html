@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Офлайн Расписание - ETIS 3.0</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <style>
+      body {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: var(--bg-color, #ffffff);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+
+      .header-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #007bff;
+      }
+
+      #offline-timestamp {
+        font-style: italic;
+        opacity: 0.7;
+        font-size: 0.9em;
+      }
+
+      .status-badge {
+        background-color: #28a745;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 16px;
+        font-size: 0.8em;
+        font-weight: bold;
+      }
+
+      #content-viewer {
+        margin-top: 20px;
+      }
+
+      .container-fluid {
+        width: 100%;
+      }
+      .row-fluid {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .span9 {
+        width: 100% !important;
+      }
+
+      .no-data-msg {
+        text-align: center;
+        padding: 50px;
+        font-size: 1.2em;
+        opacity: 0.6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header-info">
+      <div>
+        <h1>Офлайн Расписание</h1>
+        <div id="offline-timestamp">Загрузка данных...</div>
+      </div>
+      <div class="status-badge">КЕШИРОВАНО</div>
+    </div>
+
+    <div id="content-viewer">
+      <div class="no-data-msg">
+        Данные не найдены. Посетите страницу расписания в ЕТИС, чтобы расширение сохранило его для офлайн-просмотра.
+      </div>
+    </div>
+
+    <script src="offline-viewer.js" type="module"></script>
+  </body>
+</html>

@@ -19,8 +19,10 @@
     "devDependencies": {
         "@preact/preset-vite": "^2.10.2",
         "@types/node": "^24.6.0",
+        "@types/webextension-polyfill": "^0.12.5",
         "@typescript-eslint/eslint-plugin": "^8.46.1",
         "@typescript-eslint/parser": "^8.46.1",
+        "baseline-browser-mapping": "^2.10.12",
         "eslint": "^9.37.0",
         "eslint-config-preact": "^2.0.0",
         "eslint-config-prettier": "^10.1.8",

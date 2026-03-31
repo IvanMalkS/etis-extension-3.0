@@ -936,6 +936,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/webextension-polyfill@npm:^0.12.5":
+  version: 0.12.5
+  resolution: "@types/webextension-polyfill@npm:0.12.5"
+  checksum: 10c0/019727139514bc39d25d9d94be8a24ca8a57f49954c3e546a54cc0df213b3d356391bf45917c43084370da462b4c903bbaa26a33845458ca868b8726961113e1
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/eslint-plugin@npm:^8.46.1":
   version: 8.46.1
   resolution: "@typescript-eslint/eslint-plugin@npm:8.46.1"
@@ -1270,6 +1277,15 @@ __metadata:
   version: 4.0.4
   resolution: "balanced-match@npm:4.0.4"
   checksum: 10c0/07e86102a3eb2ee2a6a1a89164f29d0dbaebd28f2ca3f5ca786f36b8b23d9e417eb3be45a4acf754f837be5ac0a2317de90d3fcb7f4f4dc95720a1f36b26a17b
+  languageName: node
+  linkType: hard
+
+"baseline-browser-mapping@npm:^2.10.12":
+  version: 2.10.12
+  resolution: "baseline-browser-mapping@npm:2.10.12"
+  bin:
+    baseline-browser-mapping: dist/cli.cjs
+  checksum: 10c0/391d354240160546c8248317698b61f21f287cc6444766414c2d299a8880045e605ed97e8d8cd198a0b9dfaa4e73c2fa765bbef089474533a904733b1dc9a363
   languageName: node
   linkType: hard
 
@@ -2141,8 +2157,10 @@ __metadata:
   dependencies:
     "@preact/preset-vite": "npm:^2.10.2"
     "@types/node": "npm:^24.6.0"
+    "@types/webextension-polyfill": "npm:^0.12.5"
     "@typescript-eslint/eslint-plugin": "npm:^8.46.1"
     "@typescript-eslint/parser": "npm:^8.46.1"
+    baseline-browser-mapping: "npm:^2.10.12"
     eslint: "npm:^9.37.0"
     eslint-config-preact: "npm:^2.0.0"
     eslint-config-prettier: "npm:^10.1.8"

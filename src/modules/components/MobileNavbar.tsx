@@ -69,7 +69,6 @@ export default function MobileNavbar() {
 
     const moreLinks = allLinks.filter((link) => !mainButtonHrefs.includes(link.href.split('?')[0]));
 
-
     return (
         <div className={CLASSES.mobile.container}>
             <nav className={CLASSES.mobile.nav}>
@@ -118,5 +117,3 @@ export default function MobileNavbar() {
         </div>
     );
 }
-
-
