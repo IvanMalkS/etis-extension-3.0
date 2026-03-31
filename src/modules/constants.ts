@@ -141,7 +141,7 @@ export const SELECTORS = {
         feedbackLinkAdvanced: 'a:nth-child(2)',
         container: 'div:nth-child(2)',
         feedbackLinkShort: 'div.teach-plan > div > a',
-    }
+    },
 } as const;
 
 /**
@@ -153,4 +153,3 @@ export const MODES = {
         short: 'short',
     },
 } as const;
-

@@ -31,8 +31,9 @@ export function modifyTeachPlanPage(): void {
 function handleTeachPlanPage(mainContent: HTMLElement, pageMode: string | null): void {
     switch (pageMode) {
         case MODES.teachPlan.advanced:
-            const feedbackLinkAdvanced =
-                mainContent.querySelector<HTMLAnchorElement>(SELECTORS.teachPlan.feedbackLinkAdvanced);
+            const feedbackLinkAdvanced = mainContent.querySelector<HTMLAnchorElement>(
+                SELECTORS.teachPlan.feedbackLinkAdvanced,
+            );
             if (feedbackLinkAdvanced) {
                 feedbackLinkAdvanced.className = `${CLASSES.common.iconButton} ${CLASSES.pages.timetable.iconFeedback}`;
                 feedbackLinkAdvanced.innerText = 'Оставить отзыв';
@@ -41,7 +42,9 @@ function handleTeachPlanPage(mainContent: HTMLElement, pageMode: string | null):
 
         case MODES.teachPlan.short:
         case null:
-            const teachPlanContainer = mainContent.querySelector<HTMLElement>(SELECTORS.teachPlan.container);
+            const teachPlanContainer = mainContent.querySelector<HTMLElement>(
+                SELECTORS.teachPlan.container,
+            );
             if (teachPlanContainer) {
                 teachPlanContainer.className = CLASSES.pages.teachPlan.container;
             }
@@ -68,4 +71,3 @@ function handleTprPage(mainContent: HTMLElement): void {
         feedbackLink.innerText = 'Оставить отзыв';
     }
 }
-

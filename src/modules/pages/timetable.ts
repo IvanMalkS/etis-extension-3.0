@@ -1,3 +1,4 @@
+import browser from 'webextension-polyfill';
 import { CLASSES, SELECTORS } from '../constants';
 
 export function modifyTimetablePage(): void {
@@ -24,7 +25,9 @@ export function modifyTimetablePage(): void {
         }
     }
 
-    const feedbackLink = mainContent.querySelector<HTMLAnchorElement>(SELECTORS.timetable.feedbackLink);
+    const feedbackLink = mainContent.querySelector<HTMLAnchorElement>(
+        SELECTORS.timetable.feedbackLink,
+    );
     if (feedbackLink) {
         feedbackLink.className = `${CLASSES.pages.timetable.button} ${CLASSES.common.iconButton} ${CLASSES.pages.timetable.iconFeedback}`;
         feedbackLink.innerText = 'Оставить отзыв';
@@ -36,6 +39,27 @@ export function modifyTimetablePage(): void {
         todayLink.className = `${CLASSES.pages.timetable.button} ${CLASSES.common.iconButton} ${CLASSES.pages.timetable.iconToday}`;
         buttonbar.appendChild(todayLink);
     }
+
+    const scheduleClone = mainContent.cloneNode(true) as HTMLElement;
+
+    scheduleClone.querySelectorAll('*').forEach((el) => {
+        Array.from(el.attributes).forEach((attr) => {
+            if (attr.name.startsWith('on')) {
+                el.removeAttribute(attr.name);
+            }
+        });
+        if (el.tagName === 'SCRIPT') {
+            el.remove();
+        }
+    });
+
+    const scheduleHtml = scheduleClone.innerHTML;
+    browser.storage.local.set({
+        cached_timetable: {
+            html: scheduleHtml,
+            timestamp: new Date().getTime(),
+        },
+    });
 
     const pairs = mainContent.querySelectorAll<HTMLTableRowElement>(SELECTORS.timetable.pairs);
     pairs.forEach((pair) => {
@@ -54,5 +78,3 @@ export function modifyTimetablePage(): void {
         }
     });
 }
-
-

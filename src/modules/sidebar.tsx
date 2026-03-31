@@ -102,6 +102,3 @@ function addPointIndicators(): void {
         }
     });
 }
-
-
-
