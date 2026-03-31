@@ -10,8 +10,14 @@
   "content_scripts": [
     {
       "matches": ["https://student.psu.ru/*"],
+      "js": ["theme-loader.js"],
+      "css": ["assets/style.css"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://student.psu.ru/*"],
       "js": ["content-script.js"],
-      "css": ["assets/style.css"]
+      "run_at": "document_idle"
     }
   ],
   "web_accessible_resources": [
