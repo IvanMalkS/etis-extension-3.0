@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'preact/hooks';
 import ThemeSwitcherButton from './ThemeSwitcher';
+import { CLASSES, SELECTORS, PAGES } from '../constants';
 
 type NavLink = {
     href: string;
@@ -14,7 +15,7 @@ type NavLink = {
  * @returns Массив ссылок, найденных в сайдбаре.
  */
 function generateLinksFromSidebar(): NavLink[] {
-    const sidebar = document.querySelector<HTMLElement>('div.span3');
+    const sidebar = document.querySelector<HTMLElement>(SELECTORS.common.sidebar);
     if (!sidebar) {
         return [];
     }
@@ -23,7 +24,7 @@ function generateLinksFromSidebar(): NavLink[] {
     const anchorElements = sidebar.querySelectorAll<HTMLAnchorElement>('ul.nav > li > a');
 
     anchorElements.forEach((anchor) => {
-        const themeSwitcherIcon = anchor.querySelector('.material-icons');
+        const themeSwitcherIcon = anchor.querySelector(SELECTORS.sidebar.themeSwitcherIcon);
 
         if (
             themeSwitcherIcon instanceof HTMLElement &&
@@ -38,7 +39,7 @@ function generateLinksFromSidebar(): NavLink[] {
                 href,
                 text: anchor.innerText.trim(),
                 rawHtml: anchor.children.length > 0 ? anchor.innerHTML : undefined,
-                hasIndicator: !!anchor.querySelector('.badge-point'),
+                hasIndicator: !!anchor.querySelector(`.${CLASSES.sidebar.badgePoint}`),
             });
         }
     });
@@ -59,47 +60,52 @@ export default function MobileNavbar() {
 
     const toggleSheet = () => setSheetOpen(!isSheetOpen);
 
-    const mainButtonHrefs = ['stu.timetable', 'stu.signs', 'stu.announce'];
+    const mainButtonHrefs: string[] = [PAGES.timetable, PAGES.signs, PAGES.announce];
     const mainButtons: NavLink[] = [
-        { href: 'stu.timetable', icon: 'today', text: 'Расписание' },
-        { href: 'stu.signs', icon: 'assessment', text: 'Оценки' },
-        { href: 'stu.announce', icon: 'campaign', text: 'Объявления' },
+        { href: PAGES.timetable, icon: 'today', text: 'Расписание' },
+        { href: PAGES.signs, icon: 'assessment', text: 'Оценки' },
+        { href: PAGES.announce, icon: 'campaign', text: 'Объявления' },
     ];
 
     const moreLinks = allLinks.filter((link) => !mainButtonHrefs.includes(link.href.split('?')[0]));
 
+
     return (
-        <div className="mobile-nav-container">
-            <nav className="mobile-nav">
+        <div className={CLASSES.mobile.container}>
+            <nav className={CLASSES.mobile.nav}>
                 {mainButtons.map((btn) => (
                     <a
                         key={btn.href}
                         href={btn.href}
-                        className={`mobile-nav-button ${activePage.split('?')[0] === btn.href ? 'active' : ''}`}
+                        className={`${CLASSES.mobile.button} ${
+                            activePage.split('?')[0] === btn.href ? CLASSES.common.active : ''
+                        }`}
                     >
-                        <span className="material-icons">{btn.icon}</span>
+                        <span className={CLASSES.common.materialIcons}>{btn.icon}</span>
                     </a>
                 ))}
                 <button
-                    className="mobile-nav-button"
+                    className={CLASSES.mobile.button}
                     onClick={toggleSheet}
                     aria-label="Открыть больше опций"
                 >
-                    <span className="material-icons">menu</span>
+                    <span className={CLASSES.common.materialIcons}>menu</span>
                 </button>
             </nav>
 
             <div
-                className={`bottom-sheet-overlay ${isSheetOpen ? 'visible' : ''}`}
+                className={`${CLASSES.mobile.overlay} ${isSheetOpen ? CLASSES.mobile.visible : ''}`}
                 onClick={toggleSheet}
             />
-            <div className={`bottom-sheet ${isSheetOpen ? 'visible' : ''}`}>
-                <div className="bottom-sheet-handle" />
-                <div className="bottom-sheet-links">
+            <div className={`${CLASSES.mobile.sheet} ${isSheetOpen ? CLASSES.mobile.visible : ''}`}>
+                <div className={CLASSES.mobile.handle} />
+                <div className={CLASSES.mobile.links}>
                     <ThemeSwitcherButton />
                     {moreLinks.map((link) => (
                         <a key={link.href} href={link.href}>
-                            {link.icon && <span className="material-icons">{link.icon}</span>}
+                            {link.icon && (
+                                <span className={CLASSES.common.materialIcons}>{link.icon}</span>
+                            )}
                             {link.rawHtml ? (
                                 <span dangerouslySetInnerHTML={{ __html: link.rawHtml }} />
                             ) : (
@@ -112,3 +118,5 @@ export default function MobileNavbar() {
         </div>
     );
 }
+
+

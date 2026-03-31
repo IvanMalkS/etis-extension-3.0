@@ -1,15 +1,30 @@
 import { useEffect } from 'preact/hooks';
-
 import { initializeTheme } from './modules/theme';
 import { modifySidebar } from './modules/sidebar';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import MobileNavbar from './modules/components/MobileNavbar';
 import { makeTablesScrollable } from './modules/tables';
+import { SELECTORS, PAGES } from './modules/constants';
 
 import * as Pages from './modules/pages';
 
+const PAGE_HANDLERS: Record<string, () => void> = {
+    [PAGES.timetable]: Pages.modifyTimetablePage,
+    [PAGES.teachers]: Pages.modifyTeachersPage,
+    [PAGES.announce]: Pages.modifyAnnouncementsPage,
+    [PAGES.teacherNotes]: Pages.modifyTeacherNotesPage,
+    [PAGES.teachPlan]: Pages.modifyTeachPlanPage,
+    [PAGES.portfolio]: Pages.modifyPortfolioPage,
+    [PAGES.changePassForm]: Pages.modifyChangePasswordPage,
+    [PAGES.changePass]: Pages.modifyChangePasswordPage,
+    [PAGES.changeEmail]: Pages.modifyChangeEmailPage,
+    [PAGES.certificates]: Pages.modifyCertificatesPage,
+    [PAGES.signs]: Pages.modifySignsPage,
+};
+
+
 function ensureViewportMetaTag(): void {
-    if (document.querySelector('meta[name="viewport"]')) {
+    if (document.querySelector(SELECTORS.common.viewportMeta)) {
         return;
     }
 
@@ -18,58 +33,29 @@ function ensureViewportMetaTag(): void {
     meta.content = 'width=device-width, initial-scale=1.0';
 
     document.head.appendChild(meta);
-    console.log('ETIS 2.1: Viewport meta tag injected.');
+    console.log('ETIS 3.0: Viewport meta tag injected.');
 }
 
 export function App() {
     const isMobile = useMediaQuery('(max-width: 768px)');
 
     useEffect(() => {
-        console.log('ETIS 2.1 App: Applying modifications...');
+        console.log('ETIS 3.0 App: Applying modifications...');
         ensureViewportMetaTag();
 
         initializeTheme();
 
         const page = window.location.pathname.split('/').pop() || '';
-        const mainContent = document.querySelector('div.span9');
-        const loginPage = document.querySelector('body > div.login');
+        const mainContent = document.querySelector(SELECTORS.common.mainContent);
+        const loginPage = document.querySelector(SELECTORS.login.pageBody);
 
         if (mainContent) {
             modifySidebar();
             makeTablesScrollable();
 
-            switch (page) {
-                case 'stu.timetable':
-                    Pages.modifyTimetablePage();
-                    break;
-                case 'stu.teachers':
-                    Pages.modifyTeachersPage();
-                    break;
-                case 'stu.announce':
-                    Pages.modifyAnnouncementsPage();
-                    break;
-                case 'stu.teacher_notes':
-                    Pages.modifyTeacherNotesPage();
-                    break;
-                case 'stu.teach_plan':
-                    Pages.modifyTeachPlanPage();
-                    break;
-                case 'stu.sc_portfolio':
-                    Pages.modifyPortfolioPage();
-                    break;
-                case 'stu.change_pass_form':
-                case 'stu.change_pass':
-                    Pages.modifyChangePasswordPage();
-                    break;
-                case 'stu_email_pkg.change_email':
-                    Pages.modifyChangeEmailPage();
-                    break;
-                case 'cert_pkg.stu_certif':
-                    Pages.modifyCertificatesPage();
-                    break;
-                case 'stu.signs':
-                    Pages.modifySignsPage();
-                    break;
+            const handler = PAGE_HANDLERS[page];
+            if (handler) {
+                handler();
             }
         } else if (loginPage) {
             Pages.modifyLoginPage();
@@ -80,3 +66,5 @@ export function App() {
 }
 
 export default App;
+
+

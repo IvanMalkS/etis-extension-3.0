@@ -1,16 +1,18 @@
+import { CLASSES, SELECTORS } from './constants';
+
 /**
  * Находит все таблицы с классом .common на странице и оборачивает их
  * в контейнер с горизонтальной прокруткой для адаптивности.
  */
 export function makeTablesScrollable(): void {
-  const tables = document.querySelectorAll<HTMLTableElement>('table.common, table.slimtab_nice');
+    const tables = document.querySelectorAll<HTMLTableElement>(SELECTORS.common.tablesCommon);
 
     if (tables.length === 0) {
         return;
     }
 
     tables.forEach((table) => {
-        if (table.parentElement?.classList.contains('table-scroll-wrapper')) {
+        if (table.parentElement?.classList.contains(CLASSES.common.tableScrollWrapper)) {
             return;
         }
 
@@ -19,10 +21,11 @@ export function makeTablesScrollable(): void {
         }
 
         const wrapper = document.createElement('div');
-        wrapper.className = 'table-scroll-wrapper';
+        wrapper.className = CLASSES.common.tableScrollWrapper;
 
         table.parentElement?.insertBefore(wrapper, table);
 
         wrapper.appendChild(table);
     });
 }
+

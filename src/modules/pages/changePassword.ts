@@ -2,7 +2,7 @@ export function modifyChangePasswordPage(): void {
     const mainContent = document.querySelector<HTMLElement>('div.span9');
     if (!mainContent) {
         console.error(
-            'ETIS 2.1: Main content container (.span9) not found on change password page.',
+            'ETIS 3.0: Main content container (.span9) not found on change password page.',
         );
         return;
     }
@@ -18,7 +18,7 @@ export function modifyChangePasswordPage(): void {
 
     if (labels.length === 0 || labels.length !== inputs.length) {
         console.error(
-            'ETIS 2.1: Mismatch between labels and inputs on change password page, aborting modification.',
+            'ETIS 3.0: Mismatch between labels and inputs on change password page, aborting modification.',
         );
         return;
     }

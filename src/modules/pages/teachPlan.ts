@@ -1,12 +1,14 @@
+import { PAGES, SELECTORS, CLASSES, MODES } from '../constants';
+
 /**
  * Модифицирует страницы учебного плана ("stu.teach_plan", "stu.tpr").
  * Определяет, какая версия страницы открыта (короткая, расширенная, темы),
  * и применяет соответствующие стили и классы.
  */
 export function modifyTeachPlanPage(): void {
-    const mainContent = document.querySelector<HTMLElement>('div.span9');
+    const mainContent = document.querySelector<HTMLElement>(SELECTORS.common.mainContent);
     if (!mainContent) {
-        console.error('ETIS 2.1: Main content container (.span9) not found on teach plan page.');
+        console.error('ETIS 3.0: Main content container (.span9) not found on teach plan page.');
         return;
     }
 
@@ -14,9 +16,9 @@ export function modifyTeachPlanPage(): void {
     const pageMode = urlParams.get('p_mode');
     const page = window.location.pathname.split('/').pop() || '';
 
-    if (page === 'stu.teach_plan') {
+    if (page === PAGES.teachPlan) {
         handleTeachPlanPage(mainContent, pageMode);
-    } else if (page === 'stu.tpr') {
+    } else if (page === PAGES.tpr) {
         handleTprPage(mainContent);
     }
 }
@@ -28,27 +30,27 @@ export function modifyTeachPlanPage(): void {
  */
 function handleTeachPlanPage(mainContent: HTMLElement, pageMode: string | null): void {
     switch (pageMode) {
-        case 'advanced':
+        case MODES.teachPlan.advanced:
             const feedbackLinkAdvanced =
-                mainContent.querySelector<HTMLAnchorElement>('a:nth-child(2)');
+                mainContent.querySelector<HTMLAnchorElement>(SELECTORS.teachPlan.feedbackLinkAdvanced);
             if (feedbackLinkAdvanced) {
-                feedbackLinkAdvanced.className = 'icon-button icon-feedback';
+                feedbackLinkAdvanced.className = `${CLASSES.common.iconButton} ${CLASSES.pages.timetable.iconFeedback}`;
                 feedbackLinkAdvanced.innerText = 'Оставить отзыв';
             }
             break;
 
-        case 'short':
+        case MODES.teachPlan.short:
         case null:
-            const teachPlanContainer = mainContent.querySelector<HTMLElement>('div:nth-child(2)');
+            const teachPlanContainer = mainContent.querySelector<HTMLElement>(SELECTORS.teachPlan.container);
             if (teachPlanContainer) {
-                teachPlanContainer.className = 'teach-plan';
+                teachPlanContainer.className = CLASSES.pages.teachPlan.container;
             }
 
             const feedbackLinkShort = mainContent.querySelector<HTMLAnchorElement>(
-                'div.teach-plan > div > a',
+                SELECTORS.teachPlan.feedbackLinkShort,
             );
             if (feedbackLinkShort) {
-                feedbackLinkShort.className = 'icon-button icon-feedback';
+                feedbackLinkShort.className = `${CLASSES.common.iconButton} ${CLASSES.pages.timetable.iconFeedback}`;
                 feedbackLinkShort.innerText = 'Оставить отзыв';
             }
             break;
@@ -60,9 +62,10 @@ function handleTeachPlanPage(mainContent: HTMLElement, pageMode: string | null):
  * @param mainContent - Основной контейнер контента.
  */
 function handleTprPage(mainContent: HTMLElement): void {
-    const feedbackLink = mainContent.querySelector<HTMLAnchorElement>('a');
+    const feedbackLink = mainContent.querySelector<HTMLAnchorElement>(SELECTORS.common.anchor);
     if (feedbackLink) {
-        feedbackLink.className = 'icon-button icon-feedback';
+        feedbackLink.className = `${CLASSES.common.iconButton} ${CLASSES.pages.timetable.iconFeedback}`;
         feedbackLink.innerText = 'Оставить отзыв';
     }
 }
+

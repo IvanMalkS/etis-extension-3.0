@@ -1,11 +1,12 @@
 import { render } from 'preact';
 import ThemeSwitcher from './components/ThemeSwitcher.tsx';
+import { CLASSES, SELECTORS, PAGES } from './constants';
 
 /**
  * Находит и модифицирует боковую панель.
  */
 export function modifySidebar(): void {
-    const sidebar = document.querySelector<HTMLElement>('div.span3');
+    const sidebar = document.querySelector<HTMLElement>(SELECTORS.common.sidebar);
     if (!sidebar) return;
 
     restoreScrollPosition(sidebar);
@@ -31,11 +32,11 @@ function restoreScrollPosition(sidebar: HTMLElement): void {
  * Находит текущую страницу в меню и добавляет ей класс 'active'.
  */
 function highlightActiveMenuItem(): void {
-    const menuItems = document.querySelectorAll<HTMLLIElement>('.nav.nav-tabs.nav-stacked > li');
+    const menuItems = document.querySelectorAll<HTMLLIElement>(SELECTORS.sidebar.menuItems);
     for (const item of menuItems) {
-        const link = item.querySelector('a');
+        const link = item.querySelector(SELECTORS.common.anchor);
         if (link && link.href === window.location.href) {
-            item.classList.add('active');
+            item.classList.add(CLASSES.common.active);
             break;
         }
     }
@@ -45,32 +46,32 @@ function highlightActiveMenuItem(): void {
  * Добавляет иконки в меню навигации и внедряет Preact-компонент ThemeSwitcher.
  */
 function addCustomElements(sidebar: HTMLElement): void {
-    const lastNav = sidebar.querySelector<HTMLUListElement>('ul:nth-last-child(1)');
+    const lastNav = sidebar.querySelector<HTMLUListElement>(SELECTORS.sidebar.lastNav);
     if (!lastNav) return;
 
     const themeSwitcherLi = document.createElement('li');
     lastNav.prepend(themeSwitcherLi);
     render(<ThemeSwitcher />, themeSwitcherLi);
 
-    const links = lastNav.querySelectorAll<HTMLAnchorElement>('li > a');
+    const links = lastNav.querySelectorAll<HTMLAnchorElement>(`li > ${SELECTORS.common.anchor}`);
     links.forEach((link) => {
         const parentLi = link.parentElement;
         if (!(parentLi instanceof HTMLLIElement) || link.parentElement === themeSwitcherLi) return;
 
         const navIcon = document.createElement('span');
-        navIcon.className = 'material-icons';
+        navIcon.className = CLASSES.common.materialIcons;
 
         switch (link.getAttribute('href')) {
-            case 'stu.change_pass_form':
+            case PAGES.changePassForm:
                 navIcon.innerHTML = 'vpn_key';
                 break;
-            case 'stu_email_pkg.change_email':
+            case PAGES.changeEmail:
                 navIcon.innerHTML = 'alternate_email';
                 break;
-            case 'stu.change_pr_page':
+            case PAGES.changePrPage:
                 navIcon.innerHTML = 'account_box';
                 break;
-            case 'stu.logout':
+            case PAGES.logout:
                 navIcon.innerHTML = 'exit_to_app';
                 break;
         }
@@ -84,20 +85,23 @@ function addCustomElements(sidebar: HTMLElement): void {
  * Добавляет цветные точки-индикаторы к важным пунктам меню.
  */
 function addPointIndicators(): void {
-    const menuItems = document.querySelectorAll<HTMLLIElement>('.nav.nav-tabs.nav-stacked > li');
+    const menuItems = document.querySelectorAll<HTMLLIElement>(SELECTORS.sidebar.menuItems);
     menuItems.forEach((li) => {
-        const link = li.querySelector('a');
+        const link = li.querySelector(SELECTORS.common.anchor);
         if (link) {
             const href = link.getAttribute('href');
             if (
-                href === 'stu_plus.add_snils' ||
-                href === 'ebl_stu.ebl_choice' ||
-                li.classList.contains('warn_menu')
+                href === PAGES.addSnils ||
+                href === PAGES.eblChoice ||
+                li.classList.contains(CLASSES.sidebar.warnMenu)
             ) {
                 const indicator = document.createElement('span');
-                indicator.className = 'badge-point';
+                indicator.className = CLASSES.sidebar.badgePoint;
                 link.appendChild(indicator);
             }
         }
     });
 }
+
+
+

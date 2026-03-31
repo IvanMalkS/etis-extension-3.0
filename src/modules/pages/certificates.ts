@@ -1,7 +1,7 @@
 export function modifyCertificatesPage(): void {
     const mainContent = document.querySelector<HTMLElement>('div.span9');
     if (!mainContent) {
-        console.error('ETIS 2.1: Main content container (.span9) not found on certificates page.');
+        console.error('ETIS 3.0: Main content container (.span9) not found on certificates page.');
         return;
     }
 

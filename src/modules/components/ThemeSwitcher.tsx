@@ -1,4 +1,5 @@
 import { useTheme } from '../theme.ts';
+import { CLASSES } from '../constants';
 
 export default function ThemeSwitcher() {
     const { theme, cycleTheme } = useTheme();
@@ -16,8 +17,9 @@ export default function ThemeSwitcher() {
 
     return (
         <a href="#" onClick={handleClick}>
-            <span className="material-icons">brightness_6</span>
+            <span className={CLASSES.common.materialIcons}>brightness_6</span>
             Тема: {themeTextMap[theme]}
         </a>
     );
 }
+

@@ -4,10 +4,11 @@ import { render } from 'preact';
 import { App } from './app.tsx';
 import './style.css';
 
-console.log('ЕТИС 2.1 Content Script Initialized!');
+console.log('ЕТИС 3.0 Content Script Initialized!');
 
 const root = document.createElement('div');
-root.id = 'etis-2-1-root';
+root.id = 'etis-3-0-root';
 document.body.appendChild(root);
 
 render(<App />, root);
+
