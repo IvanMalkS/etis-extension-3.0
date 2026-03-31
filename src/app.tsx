@@ -23,26 +23,11 @@ const PAGE_HANDLERS: Record<string, () => void> = {
     [PAGES.signs]: Pages.modifySignsPage,
 };
 
-function ensureViewportMetaTag(): void {
-    if (document.querySelector(SELECTORS.common.viewportMeta)) {
-        return;
-    }
-
-    const meta = document.createElement('meta');
-    meta.name = 'viewport';
-    meta.content = 'width=device-width, initial-scale=1.0';
-
-    document.head.appendChild(meta);
-    console.log('ETIS 3.0: Viewport meta tag injected.');
-}
-
 export function App() {
     const isMobile = useMediaQuery('(max-width: 768px)');
 
     useEffect(() => {
         console.log('ETIS 3.0 App: Applying modifications...');
-        ensureViewportMetaTag();
-
         initializeTheme();
 
         const page = window.location.pathname.split('/').pop() || '';
